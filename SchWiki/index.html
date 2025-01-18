@@ -1,43 +1,36 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schulprojekt - SchWiki</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <!-- Logo und Titel -->
+      <div class="logo-section">
+        <div class="logo"></div>
+        <span class="title">SchWiki</span>
+      </div>
+      <!-- Dropdown und Suchleiste -->
+      <div class="actions">
+        <select name="lernfeld" id="lernfeld-dropdown" class="dropdown">
+          <option value="1">Lernfeld 1</option>
+          <option value="2">Lernfeld 2</option>
+          <option value="3">Lernfeld 3</option>
+        </select>
+        <input type="text" placeholder="suche..." class="search-input">
+      </div>
+    </div>
+  </nav>
 
-        <!-- Navigation -->
-        <nav class="navbar">
-            <div class="container">
+  <!-- Hauptinhalt -->
+  <div class="content">
+    <h1>Wähle ein Lernfeld aus</h1>
+  </div>
 
-                <!-- Logo und Titel -->
-                <div class="logo-section">
-                    <div class="logo"></div>
-                    <span class="title">SchWiki</span>
-                </div>
-
-                <!-- Dropdown und Suchleiste -->
-                <div class="actions">
-                    <select name="lernfeld" id="lernfeld-dropdown" class="dropdown">
-                        <option value="1">Lernfeld 1</option>
-                        <option value="2">Lernfeld 2</option>
-                        <option value="3">Lernfeld 3</option>
-                      </select>
-                      <input type="text" placeholder="suche..." class="search-input">
-                </div>
-            </div>
-        </nav>
-
-        
-
-        <script src="" async defer></script>
-    </body>
+</body>
 </html>
