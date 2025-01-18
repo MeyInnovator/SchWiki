@@ -60,6 +60,56 @@ body {
     outline: none;
     background-color: #555;
   }
+
+/* Styling für das Label */
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Abstand zwischen Checkbox und Text */
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Verstecke die Standard-Checkbox */
+  .custom-checkbox input[type="checkbox"] {
+    display: none; /* Versteckt die Standard-Checkbox */
+  }
+  
+  /* Kreis als Ersatz für die Checkbox */
+  .custom-checkbox .circle {
+    width: 10px;
+    height: 10px;
+    border: 2px solid #fff; /* Farbe des Kreises */
+    border-radius: 50%; /* Rundes Design */
+    display: inline-block;
+    position: relative;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  /* Innerer Kreis bei Aktivierung */
+  .custom-checkbox .circle::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background-color: #007bff; /* Farbe des inneren Kreises */
+    border-radius: 50%; /* Rund */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Unsichtbar und verkleinert */
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  
+  /* Wenn Checkbox aktiviert ist */
+  .custom-checkbox input[type="checkbox"]:checked + .circle {
+    border-color: #007bff; /* Ändert die Umrandungsfarbe */
+  }
+  
+  .custom-checkbox input[type="checkbox"]:checked + .circle::after {
+    transform: translate(-50%, -50%) scale(1); /* Sichtbar und volle Größe */
+    opacity: 1;
+  }
   
   /* Optionen (Merken und Passwort vergessen) */
   .options {
