@@ -10,13 +10,33 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="css/login.css">
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        
-        <script src="" async defer></script>
-    </body>
+        <div class="login-container">
+          <div class="login-box">
+            <div class="avatar"></div> <!-- Platzhalter für das Profilbild -->
+            <h2>Login</h2>
+            <form>
+              <!-- Eingabefelder -->
+              <input type="email" placeholder="E-Mail" required>
+              <input type="password" placeholder="Passwort" required>
+      
+              <!-- Optionen -->
+              <div class="options">
+                <label>
+                  <input type="checkbox"> Merken
+                </label>
+                <a href="#">Passwort vergessen?</a>
+              </div>
+      
+              <!-- Anmeldebutton -->
+              <button type="submit">Anmelden</button>
+      
+              <!-- Hinweis für neuen Account -->
+              <p>Kein Account? <a href="#">Kontaktiere einen Administrator</a></p>
+            </form>
+          </div>
+        </div>
+      </body>
 </html>

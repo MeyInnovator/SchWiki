@@ -1,0 +1,114 @@
+/* Grundlegendes Styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #222; /* Dunkler Hintergrund */
+    color: #fff; /* Weiße Schriftfarbe */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Login-Container */
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* Login-Box */
+  .login-box {
+    background-color: #333; /* Dunkler Hintergrund für die Box */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 300px;
+  }
+  
+  /* Avatar (Platzhalter) */
+  .avatar {
+    background-color: #ccc;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+  }
+  
+  /* Login-Titel */
+  h2 {
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  
+  /* Eingabefelder */
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: #fff;
+    font-size: 16px;
+  }
+  
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    outline: none;
+    background-color: #555;
+  }
+  
+  /* Optionen (Merken und Passwort vergessen) */
+  .options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    font-size: 14px;
+  }
+  
+  .options a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .options a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Anmeldebutton */
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Hinweis für neuen Account */
+  p {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  
+  p a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  p a:hover {
+    text-decoration: underline;
+  }
+  
