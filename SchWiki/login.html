@@ -9,7 +9,7 @@
 <body>
   <div class="login-container">
     <div class="login-box">
-      <div class="avatar"></div> <!-- Platzhalter für das Profilbild -->
+      <img class="avatar" src="assets/Logo.png">
       <h2>Login</h2>
       <form id="loginForm">
         <!-- Eingabefelder -->
@@ -30,6 +30,11 @@
         <!-- Hinweis für neuen Account -->
         <p>Kein Account? <a href="#">Kontaktiere einen Administrator</a></p>
       </form>
+
+      <!-- Ladeanimation -->
+      <div id="loadingSpinner" class="spinner hidden">
+        <div class="circle"></div>
+      </div>
     </div>
   </div>
 

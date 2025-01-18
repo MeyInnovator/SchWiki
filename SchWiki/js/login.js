@@ -8,8 +8,14 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
   
     // Überprüfung der Eingaben
     if (email === 'admin@test.de' && password === '123') {
-      // Weiterleitung zur index.html bei korrekten Daten
-      window.location.href = 'index.html';
+      // Ladeanimation anzeigen
+      const spinner = document.getElementById('loadingSpinner');
+      spinner.classList.remove('hidden');
+  
+      // Verzögerung für die Weiterleitung (2 Sekunden)
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 2000);
     } else {
       // Fehlermeldung anzeigen, wenn die Eingaben falsch sind
       alert('Ungültige E-Mail oder Passwort. Bitte versuchen Sie es erneut.');
