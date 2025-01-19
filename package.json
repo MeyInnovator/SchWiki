@@ -1,0 +1,23 @@
+{
+  "name": "schwiki",
+  "version": "1.0.0",
+  "description": "Hallo, das hier ist unser Mittelstufenprojekt. \r Wir haben nicht so viel Ahnung XD",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MeyInnovator/SchWiki.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MeyInnovator/SchWiki/issues"
+  },
+  "homepage": "https://github.com/MeyInnovator/SchWiki#readme",
+  "dependencies": {
+    "sqlite3": "^5.1.7"
+  }
+}
