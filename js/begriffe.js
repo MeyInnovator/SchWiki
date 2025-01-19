@@ -26,4 +26,22 @@ const begriffeDaten = {
     titleElement.textContent = "Begriff nicht gefunden";
     descriptionElement.textContent = "Der Begriff konnte nicht geladen werden. Bitte wähle einen gültigen Begriff aus.";
   }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.querySelector(".search-input");
+    const cards = document.querySelectorAll(".grid .card");
+  
+    searchInput.addEventListener("input", () => {
+      const searchValue = searchInput.value.toLowerCase();
+  
+      cards.forEach(card => {
+        const cardText = card.textContent.toLowerCase();
+        if (cardText.includes(searchValue)) {
+          card.style.display = ""; // Zeigt das Element an
+        } else {
+          card.style.display = "none"; // Versteckt das Element
+        }
+      });
+    });
+  });
   
