@@ -42,24 +42,26 @@ body {
     color: #fff;
   }
   
-  /* Eingabefelder */
-  input[type="email"],
-  input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-    background-color: #444;
-    color: #fff;
-    font-size: 16px;
-  }
-  
-  input[type="email"]:focus,
-  input[type="password"]:focus {
-    outline: none;
-    background-color: #555;
-  }
+ /* Eingabefelder */
+input[type="email"],
+input[type="password"] {
+  width: 100%; /* Nimmt die volle Breite ein */
+  padding: 10px; /* Innenabstand */
+  margin: 10px 0; /* Außenabstand oben und unten */
+  border: none; /* Kein Rand */
+  border-radius: 5px; /* Abgerundete Ecken */
+  background-color: #444; /* Hintergrundfarbe */
+  color: #fff; /* Textfarbe */
+  font-size: 16px;
+  box-sizing: border-box; /* Stellt sicher, dass Padding und Border in der Breite berücksichtigt werden */
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  background-color: #555; /* Hintergrundfarbe bei Fokus */
+}
+
 
 /* Styling für das Label */
 .custom-checkbox {
