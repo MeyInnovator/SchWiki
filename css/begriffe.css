@@ -70,6 +70,7 @@ body {
     font-weight: bold;
     transition: transform 0.3s, background-color 0.3s;
     cursor: pointer;
+    text-decoration: none;
   }
   
   /* Hover-Effekt */
