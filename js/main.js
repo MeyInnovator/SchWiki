@@ -1,34 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.querySelector(".search-input"); // Suchfeld
-    const cards = document.querySelectorAll(".grid .card"); // Alle Karten
-  
-    // Debugging: Prüfen, ob Karten gefunden wurden
-    console.log(cards); // Zeigt die Karten in der Konsole
-  
-    // Platzhalter für "Keine Ergebnisse gefunden"
-    const noResultsMessage = document.createElement("p");
-    noResultsMessage.textContent = "Keine Ergebnisse gefunden.";
-    noResultsMessage.style.display = "none";
-    noResultsMessage.className = "no-results";
-    document.querySelector(".content").appendChild(noResultsMessage);
-  
-    // Event-Listener für Suchfeld
-    searchInput.addEventListener("input", () => {
-      const searchValue = searchInput.value.toLowerCase();
-      let hasResults = false;
-  
-      cards.forEach((card) => {
-        const cardText = card.textContent.toLowerCase();
-        if (cardText.includes(searchValue)) {
-          card.style.display = ""; // Karte anzeigen
-          hasResults = true;
-        } else {
-          card.style.display = "none"; // Karte ausblenden
-        }
-      });
-  
-      // Anzeige der "Keine Ergebnisse"-Nachricht
-      noResultsMessage.style.display = hasResults ? "none" : "";
+  const searchInput = document.querySelector(".search-input");
+  const cards = document.querySelectorAll(".grid .card");
+
+  // "Fertig"-Status aus dem Local Storage laden
+  const completedTerms = JSON.parse(localStorage.getItem("completedTerms")) || [];
+
+  // Icon für abgeschlossene Begriffe hinzufügen
+  cards.forEach((card) => {
+    const cardText = card.textContent.trim();
+    if (completedTerms.includes(cardText)) {
+      const icon = document.createElement("span");
+      icon.textContent = "✔";
+      icon.style.color = "green";
+      icon.style.marginLeft = "10px";
+      card.appendChild(icon);
+    }
+  });
+
+  // Suche aktivieren
+  searchInput.addEventListener("input", () => {
+    const searchValue = searchInput.value.toLowerCase();
+    cards.forEach((card) => {
+      const cardText = card.textContent.toLowerCase();
+      card.style.display = cardText.includes(searchValue) ? "" : "none";
     });
   });
-  
+});

@@ -16,3 +16,20 @@ body {
     justify-content: space-between;
   }
   
+  .complete-button {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .complete-button:hover {
+    background-color: #0056b3;
+  }
+  
