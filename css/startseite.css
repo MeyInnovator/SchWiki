@@ -1,44 +1,8 @@
-body {
-    font-family: 'Roboto', Arial, sans-serif;
-    background-color: #222;
-    color: #fff;
-    margin: 0;
-    padding: 0;
-  }
-   
-  .navbar .title {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-  }
-  
-  .navbar .nav-link {
-    margin-right: 15px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 16px;
-  }
-  
-  .navbar .nav-link.active {
-    font-weight: bold;
-    text-decoration: none;
-  }
-  
-  .content {
-    max-width: 800px;
-    margin: 40px auto;
-    text-align: center;
-  }
-  
-  .content h1 {
-    font-size: 32px;
-    margin-bottom: 20px;
-  }
-  
-  .lernfeld-list {
+.lernfeld-list {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
+    margin: 50px;
   }
   
   .lernfeld-item {
@@ -48,17 +12,12 @@ body {
     background: #333;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: white;
   }
   
-  .lernfeld-item h2 {
-    font-size: 18px;
-    margin: 0;
-  }
-  
-  .lernfeld-item p {
-    font-size: 14px;
-    margin: 5px 0 0;
+  .lernfeld-item:hover {
+    background: #444;
   }
   
   .progress-circle {

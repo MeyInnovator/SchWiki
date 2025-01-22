@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Begriff - SchWiki</title>
+  <title>Lernfeld - SchWiki</title>
   <link rel="stylesheet" href="../css/navigations.css">
-  <link rel="stylesheet" href="../css/begriffe.css">
+  <link rel="stylesheet" href="../css/lernfeld.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Navigation -->
@@ -16,22 +17,24 @@
         <a href="startseite.html" class="title">SchWiki</a>
       </div>
       <div class="actions">
+        <a href="startseite.html" class="nav-link active">Startseite</a>
         <select name="lernfeld" id="lernfeld-dropdown" class="dropdown">
           <option value="1">Lernfeld 1</option>
           <option value="2">Lernfeld 2</option>
           <option value="3">Lernfeld 3</option>
         </select>
-        <input type="text" placeholder="Suche..." class="search-input">
+        <input type="text" placeholder="suche..." class="search-input">
       </div>
     </div>
   </nav>
 
-  <!-- Inhalt -->
+  <!-- Hauptinhalt -->
   <div class="content">
-    <h1 id="begriffs-title">Begriff</h1>
-    <p id="begriffs-description">Beschreibung wird geladen...</p>
+    <h1 id="lernfeld-title">Lernfeld</h1>
+    <p id="lernfeld-description">Hier sind die Begriffe des gewählten Lernfelds.</p>
+    <div class="grid" id="begriffe-grid"></div>
   </div>
 
-  <script src="../js/begriffe.js"></script>
+  <script src="../js/lernfeld.js"></script>
 </body>
 </html>

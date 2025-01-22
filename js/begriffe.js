@@ -34,7 +34,9 @@ if (begriff && begriffeDaten[begriff]) {
       localStorage.setItem("completedTerms", JSON.stringify(completedTerms));
     }
     //alert(`${begriff} wurde als fertig markiert.`);
-    window.location.href = "index.html";
+    window.location.href = `lernfeld.html?lernfeld=1`; // Rückleitung zur Lernfeld-Seite
+
+
   });
 } else {
   titleElement.textContent = "Begriff nicht gefunden";
