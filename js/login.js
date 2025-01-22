@@ -14,7 +14,7 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
   
       // Verzögerung für die Weiterleitung (2 Sekunden)
       setTimeout(() => {
-        window.location.href = 'index.html';
+        window.location.href = 'startseite.html';
       }, 2000);
     } else {
       // Fehlermeldung anzeigen, wenn die Eingaben falsch sind

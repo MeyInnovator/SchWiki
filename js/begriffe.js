@@ -1,8 +1,14 @@
+// Begriffe-Datenbank als JSON-Objekt
 const begriffeDaten = {
   "Begriff 1": "Dies ist die Beschreibung für Begriff 1.",
   "Begriff 2": "Dies ist die Beschreibung für Begriff 2.",
   "Begriff 3": "Beschreibung für Begriff 3.",
-  "Begriff 4": "Beschreibung für Begriff 4.",
+  "Begriff 4": "Beschreibung für Begriff 4.", // Füge Begriff 4 sicher hinzu
+  "Begriff 5": "Beschreibung für Begriff 5.",
+  "Begriff 6": "Beschreibung für Begriff 6.",
+  "Begriff A": "Beschreibung für Begriff A.",
+  "Begriff B": "Beschreibung für Begriff B.",
+  "Begriff C": "Beschreibung für Begriff C.",
 };
 
 // URL-Parameter auslesen
@@ -23,22 +29,40 @@ if (begriff && begriffeDaten[begriff]) {
 
   // Button hinzufügen
   const fertigButton = document.createElement("button");
-  fertigButton.textContent = "Fertig";
-  fertigButton.className = "complete-button";
-  document.querySelector(".content").appendChild(fertigButton);
+  fertigButton.className = "btn green";
+  fertigButton.id = "fertigButton";
+  document.querySelector(".buttons").prepend(fertigButton);
+
+  // Überprüfen, ob der Begriff gelesen ist
+  const isGelesen = completedTerms.includes(begriff);
+  fertigButton.textContent = isGelesen ? "Gelesen" : "Ungelesen";
+  fertigButton.style.backgroundColor = isGelesen ? "#28a745" : "#B08F2B"; // Grün für Gelesen, Orange für Ungelesen
 
   // Event für den Button
   fertigButton.addEventListener("click", () => {
-    if (!completedTerms.includes(begriff)) {
+    if (completedTerms.includes(begriff)) {
+      // Begriff entfernen
+      completedTerms = completedTerms.filter((term) => term !== begriff);
+      fertigButton.textContent = "Ungelesen";
+      fertigButton.style.backgroundColor = "#B08F2B"; // Orange
+    } else {
+      // Begriff hinzufügen
       completedTerms.push(begriff);
-      localStorage.setItem("completedTerms", JSON.stringify(completedTerms));
+      fertigButton.textContent = "Gelesen";
+      fertigButton.style.backgroundColor = "#28a745"; // Grün
     }
-    //alert(`${begriff} wurde als fertig markiert.`);
-    window.location.href = `lernfeld.html?lernfeld=1`; // Rückleitung zur Lernfeld-Seite
-
-
+    // Speichern im Local Storage
+    localStorage.setItem("completedTerms", JSON.stringify(completedTerms));
   });
 } else {
+  // Fallback: Begriff nicht gefunden
   titleElement.textContent = "Begriff nicht gefunden";
-  descriptionElement.textContent = "Der Begriff konnte nicht geladen werden.";
+  descriptionElement.textContent =
+    "Der Begriff konnte nicht geladen werden.";
 }
+
+// Zurück-Button
+const zurueckButton = document.getElementById("zurueckButton");
+zurueckButton.addEventListener("click", () => {
+  window.history.back();
+});
