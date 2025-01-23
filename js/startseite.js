@@ -12,11 +12,13 @@ function generateLernfeldList() {
   const lernfeldList = document.querySelector(".lernfeld-list");
   lernfeldList.innerHTML = ""; // Reset der Liste
 
-  // Iteriere über die Lernfelder
+  // Iteriere über die Lernfelder und deren Begriffe
   Object.entries(lernfeldDaten).forEach(([lernfeldId, begriffe]) => {
-    // Zähle die gelesenen Begriffe, die zu diesem Lernfeld gehören
+    // Filtere Begriffe, die gelesen wurden und zu diesem Lernfeld gehören
     const gelesen = begriffe.filter((begriff) => completedTerms.includes(begriff)).length;
     const total = begriffe.length;
+
+    // Berechne den Fortschritt in Prozent
     const percentage = total > 0 ? (gelesen / total) * 100 : 0;
 
     // HTML-Struktur für ein Lernfeld
@@ -42,16 +44,5 @@ function generateLernfeldList() {
   });
 }
 
-// Überwachung von Local Storage und Fortschrittsanzeige
-function updateProgressOnLocalStorageChange() {
-  // Überwache Änderungen am Local Storage
-  window.addEventListener("storage", () => {
-    generateLernfeldList();
-  });
-}
-
 // Generiere die Lernfeldliste beim Laden der Seite
-document.addEventListener("DOMContentLoaded", () => {
-  generateLernfeldList();
-  updateProgressOnLocalStorageChange();
-});
+document.addEventListener("DOMContentLoaded", generateLernfeldList);
