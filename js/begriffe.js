@@ -35,21 +35,21 @@ if (begriff && begriffeDaten[begriff]) {
 
   // Überprüfen, ob der Begriff gelesen ist
   const isGelesen = completedTerms.includes(begriff);
-  fertigButton.textContent = isGelesen ? "Gelesen" : "Ungelesen";
-  fertigButton.style.backgroundColor = isGelesen ? "#28a745" : "#B08F2B"; // Grün für Gelesen, Orange für Ungelesen
+  fertigButton.textContent = isGelesen ? "Ungelesen" : "Gelesen";
+  fertigButton.style.backgroundColor = isGelesen ? "#B08F2B" : "#28a745"; // Grün für Gelesen, Orange für Ungelesen
 
   // Event für den Button
   fertigButton.addEventListener("click", () => {
     if (completedTerms.includes(begriff)) {
       // Begriff entfernen
       completedTerms = completedTerms.filter((term) => term !== begriff);
-      fertigButton.textContent = "Ungelesen";
-      fertigButton.style.backgroundColor = "#B08F2B"; // Orange
+      fertigButton.textContent = "Gelesen";
+      fertigButton.style.backgroundColor = "#28a745"; // Orange
     } else {
       // Begriff hinzufügen
       completedTerms.push(begriff);
-      fertigButton.textContent = "Gelesen";
-      fertigButton.style.backgroundColor = "#28a745"; // Grün
+      fertigButton.textContent = "Ungelesen";
+      fertigButton.style.backgroundColor = "#B08F2B"; // Grün
     }
     // Speichern im Local Storage
     localStorage.setItem("completedTerms", JSON.stringify(completedTerms));
