@@ -1,9 +1,13 @@
+:root{
+  color-scheme: light dark;
+}
+
 .lernfeld-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-decoration: none;
-  background-color: #333; /* Hintergrundfarbe */
+  background-color:  light-dark(#ede8d0, #333) !important; /* Hintergrundfarbe */
   color: #fff; /* Textfarbe */
   padding: 30px 60px; /* Mehr Raum innerhalb des Elements */
   border-radius: 15px; /* Runde Ecken */
