@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const lernfeldTitle = document.getElementById("lernfeld-title");
   const begriffeGrid = document.getElementById("begriffe-grid");
+  const searchInput = document.querySelector(".search-input");
 
   // Daten für die Lernfelder
   const lernfeldData = {
@@ -11,32 +12,40 @@ document.addEventListener("DOMContentLoaded", () => {
     2: { title: "Lernfeld 2", begriffe: ["Begriff 4", "Begriff 5", "Begriff 6"] },
   };
 
-  // "Fertig"-Status aus Local Storage abrufen
   let completedTerms = JSON.parse(localStorage.getItem("completedTerms")) || [];
 
-  // Überprüfen, ob das Lernfeld existiert
   const lernfeld = lernfeldData[lernfeldId];
   if (lernfeld) {
     lernfeldTitle.textContent = lernfeld.title;
+    renderBegriffe(lernfeld.begriffe);
+  } else {
+    lernfeldTitle.textContent = "Lernfeld nicht gefunden";
+  }
 
-    // Begriffe dynamisch hinzufügen
-    lernfeld.begriffe.forEach((begriff) => {
+  function renderBegriffe(begriffe) {
+    begriffeGrid.innerHTML = "";
+    begriffe.forEach((begriff) => {
       const begriffCard = document.createElement("a");
       begriffCard.href = `begriffe.html?begriff=${encodeURIComponent(begriff)}`;
       begriffCard.textContent = begriff;
       begriffCard.className = "card";
 
-      // Überprüfen, ob der Begriff als "fertig" markiert wurde
       if (completedTerms.includes(begriff)) {
         const checkmark = document.createElement("span");
-        checkmark.textContent = "✔️"; // Haken-Symbol
+        checkmark.textContent = "✔️";
         checkmark.className = "checkmark";
-        begriffCard.appendChild(checkmark); // Haken zur Karte hinzufügen
+        begriffCard.appendChild(checkmark);
       }
 
       begriffeGrid.appendChild(begriffCard);
     });
-  } else {
-    lernfeldTitle.textContent = "Lernfeld nicht gefunden";
   }
+
+  searchInput.addEventListener("input", () => {
+    const searchTerm = searchInput.value.toLowerCase();
+    const filteredBegriffe = lernfeld.begriffe.filter(begriff => 
+      begriff.toLowerCase().includes(searchTerm)
+    );
+    renderBegriffe(filteredBegriffe);
+  });
 });
