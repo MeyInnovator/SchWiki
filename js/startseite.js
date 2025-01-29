@@ -1,3 +1,9 @@
+// Daten für Lernfelder und Begriffe
+const lernfeldDaten = {
+  1: ["Begriff 1", "Begriff 2", "Begriff 3"], // Lernfeld 1 Begriffe
+  2: ["Begriff A", "Begriff B", "Begriff C"], // Lernfeld 2 Begriffe
+};
+
 // Gelesene Begriffe aus dem Local Storage
 const completedTerms = JSON.parse(localStorage.getItem("completedTerms")) || [];
 
