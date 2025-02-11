@@ -1,0 +1,198 @@
+/* Grundlegendes Styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #222; /* Dunkler Hintergrund */
+    color: #fff; /* Weiße Schriftfarbe */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Login-Container */
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* Login-Box */
+  .login-box {
+    background-color: #333; /* Dunkler Hintergrund für die Box */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 300px;
+  }
+  
+  /* Avatar (Platzhalter) */
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+  }
+  
+  /* Login-Titel */
+  h2 {
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  
+ /* Eingabefelder */
+input[type="email"],
+input[type="password"] {
+  width: 100%; /* Nimmt die volle Breite ein */
+  padding: 10px; /* Innenabstand */
+  margin: 10px 0; /* Außenabstand oben und unten */
+  border: none; /* Kein Rand */
+  border-radius: 5px; /* Abgerundete Ecken */
+  background-color: #444; /* Hintergrundfarbe */
+  color: #fff; /* Textfarbe */
+  font-size: 16px;
+  box-sizing: border-box; /* Stellt sicher, dass Padding und Border in der Breite berücksichtigt werden */
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  background-color: #555; /* Hintergrundfarbe bei Fokus */
+}
+
+
+/* Styling für das Label */
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Abstand zwischen Checkbox und Text */
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Verstecke die Standard-Checkbox */
+  .custom-checkbox input[type="checkbox"] {
+    display: none; /* Versteckt die Standard-Checkbox */
+  }
+  
+  /* Kreis als Ersatz für die Checkbox */
+  .custom-checkbox .circle {
+    width: 10px;
+    height: 10px;
+    border: 2px solid #fff; /* Farbe des Kreises */
+    border-radius: 50%; /* Rundes Design */
+    display: inline-block;
+    position: relative;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  /* Innerer Kreis bei Aktivierung */
+  .custom-checkbox .circle::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background-color: #007bff; /* Farbe des inneren Kreises */
+    border-radius: 50%; /* Rund */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Unsichtbar und verkleinert */
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  
+  /* Wenn Checkbox aktiviert ist */
+  .custom-checkbox input[type="checkbox"]:checked + .circle {
+    border-color: #007bff; /* Ändert die Umrandungsfarbe */
+  }
+  
+  .custom-checkbox input[type="checkbox"]:checked + .circle::after {
+    transform: translate(-50%, -50%) scale(1); /* Sichtbar und volle Größe */
+    opacity: 1;
+  }
+  
+  /* Optionen (Merken und Passwort vergessen) */
+  .options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    font-size: 14px;
+  }
+  
+  .options a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .options a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Anmeldebutton */
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Hinweis für neuen Account */
+  p {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  
+  p a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  p a:hover {
+    text-decoration: underline;
+  }
+
+  /* Spinner Styling */
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .circle {
+    width: 30px;
+    height: 30px;
+    border: 4px solid #fff; /* Außenfarbe */
+    border-top: 4px solid #007bff; /* Farbe des animierten Teils */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Animation */
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Versteckt den Spinner */
+  .hidden {
+    display: none;
+  }
+  
+  
