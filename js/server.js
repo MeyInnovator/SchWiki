@@ -39,3 +39,5 @@ app.get('/api/begriffe/:lernfeldId', (req, res) => {
 app.listen(port, () => {
     console.log(`Server läuft auf http://localhost:${port}`);
 });
+
+// Muss man mit U:\Schwiki\Schwiki\js> node server.js starten und dann die URL: http://localhost:3000/api/lernfelder einsehen
