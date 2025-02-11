@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - SchulWiki</title>
+  <link rel="icon" type="image/x-icon" href="../assets/Logo.png">
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <img class="avatar" src="../assets/Logo.png">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <!-- Eingabefelder -->
+        <input type="email" id="email" placeholder="E-Mail" required>
+        <input type="password" id="password" placeholder="Passwort" required>
+
+        <!-- Optionen -->
+        <div class="options">
+            <label class="custom-checkbox">
+                <input id="checkbox" type="checkbox"> 
+                <span class="circle"></span> Merken
+              </label>
+              
+          <a href="#">Passwort vergessen?</a>
+        </div>
+
+        <!-- Anmeldebutton -->
+        <button type="submit">Anmelden</button>
+
+        <!-- Hinweis für neuen Account -->
+        <p>Kein Account? <a href="#">Kontaktiere einen Administrator</a></p>
+      </form>
+
+      <!-- Ladeanimation -->
+      <div id="loadingSpinner" class="spinner hidden">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/login.js"></script> <!-- JavaScript-Datei -->
+</body>
+</html>

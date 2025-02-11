@@ -1,0 +1,73 @@
+:root{
+  color-scheme: light dark;
+}
+
+.lernfeld-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  background-color:  light-dark(#ede8d0, #333) !important; /* Hintergrundfarbe */
+  color: #fff; /* Textfarbe */
+  padding: 30px 60px; /* Mehr Raum innerhalb des Elements */
+  border-radius: 15px; /* Runde Ecken */
+  margin: 15px 50px; /* Abstand zwischen den Items */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Schatten für mehr Tiefe */
+  transition: transform 0.2s ease, background-color 0.3s ease; /* Smooth Hover-Effekt */
+}
+
+.lernfeld-item:hover {
+  background-color: #444; /* Hellerer Hintergrund bei Hover */
+  transform: scale(1.01); /* Leichte Vergrößerung */
+}
+
+.lernfeld-item h2 {
+  font-size: 18px;
+  margin: 0;
+  color: #fff;
+}
+
+.lernfeld-item p {
+  font-size: 14px;
+  margin: 0;
+  color: #bbb; /* Dezente Farbe */
+}
+
+
+.progress-circle {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-circle svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  transform: rotate(-90deg); /* Dreht den Kreis, damit der Fortschritt von oben startet */
+}
+
+.progress-circle circle {
+  fill: none;
+  stroke-width: 4;
+  stroke: #dddddd21; /* Standardfarbe */
+}
+
+.progress-circle circle:nth-child(2) {
+  stroke: #28a745; /* Fortschrittsfarbe (grün) */
+  stroke-linecap: round;
+  stroke-dasharray: 113;
+  transition: stroke-dashoffset 0.3s;
+}
+
+.progress-circle span {
+  position: absolute;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+}
