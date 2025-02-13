@@ -9,8 +9,7 @@ async function generateLernfeldList() {
     const response = await fetch("http://localhost:3000/api/lernfelder");
     const lernfelder = await response.json();
 
-    // Gegebenenfalls kannst du hier auch lokale Daten (z. B. den Fortschritt) einfließen lassen.
-    // Beispiel: completedTerms aus dem localStorage
+    // localStorage
     const completedTerms = JSON.parse(localStorage.getItem("completedTerms")) || [];
 
     // Für jedes Lernfeld ein Element generieren
