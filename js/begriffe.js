@@ -1,14 +1,6 @@
 // Begriffe-Datenbank als JSON-Objekt
 const begriffeDaten = {
   "Begriff 1": "Dies ist die Beschreibung für Begriff 1.",
-  "Begriff 2": "Dies ist die Beschreibung für Begriff 2.",
-  "Begriff 3": "Beschreibung für Begriff 3.",
-  "Begriff 4": "Beschreibung für Begriff 4.", // Füge Begriff 4 sicher hinzu
-  "Begriff 5": "Beschreibung für Begriff 5.",
-  "Begriff 6": "Beschreibung für Begriff 6.",
-  "Begriff A": "Beschreibung für Begriff A.",
-  "Begriff B": "Beschreibung für Begriff B.",
-  "Begriff C": "Beschreibung für Begriff C.",
 };
 
 // URL-Parameter auslesen
