@@ -1,6 +1,8 @@
 const urlParams = new URLSearchParams(window.location.search);
 const lernfeldId = urlParams.get('lernfeld');
 
+let completedTerms = JSON.parse(localStorage.getItem("completedTerms")) || [];
+
 // Optional: Hole auch den Namen des Lernfelds über einen API-Call oder speichere ihn im LocalStorage
 
 async function fetchBegriffe() {
@@ -20,10 +22,21 @@ async function fetchBegriffe() {
     begriffe.forEach(term => {
       const termItem = document.createElement('div');
       termItem.classList.add('begriff-item');
+      termItem.href = `begriffe.html?begriff=${encodeURIComponent(term)}`;
+      termItem.className = "card";
+      termItem.textContent = term;
       termItem.innerHTML = `
         <h2>${term.name}</h2>
         <p>${term.Erklärung || ''}</p>
       `;
+
+      if (completedTerms.includes(term)) {
+        const checkmark = document.createElement("span");
+        checkmark.textContent = "✔️";
+        checkmark.className = "checkmark";
+        begriffCard.appendChild(checkmark);
+      }
+
       listContainer.appendChild(termItem);
     });
   } catch (error) {
