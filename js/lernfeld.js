@@ -19,25 +19,25 @@ async function fetchBegriffe() {
     }
 
     // Begriffe auflisten
-    begriffe.forEach(term => {
-      const termItem = document.createElement('div');
-      termItem.classList.add('begriff-item');
-      termItem.href = `begriffe.html?begriff=${encodeURIComponent(term)}`;
-      termItem.className = "card";
-      termItem.textContent = term;
-      termItem.innerHTML = `
-        <h2>${term.name}</h2>
-        <p>${term.Erklärung || ''}</p>
+    begriffe.forEach(begriff => {
+      const begriffItem = document.createElement('a');
+      begriffItem.classList.add('begriff-item');
+      begriffItem.href = `begriffe.html?begriff=${encodeURIComponent(begriff)}`;
+      begriffItem.className = "card";
+      begriffItem.textContent = begriff;
+      begriffItem.innerHTML = `
+        <h2>${begriff.name}</h2>
+        <p>${begriff.Erklärung || ''}</p>
       `;
 
-      if (completedTerms.includes(term)) {
+      if (completedTerms.includes(begriff.name)) {
         const checkmark = document.createElement("span");
         checkmark.textContent = "✔️";
         checkmark.className = "checkmark";
-        begriffCard.appendChild(checkmark);
+        begriffItem.appendChild(checkmark);
       }
 
-      listContainer.appendChild(termItem);
+      listContainer.appendChild(begriffItem);
     });
   } catch (error) {
     console.error("Fehler beim Laden der Begriffe:", error);
