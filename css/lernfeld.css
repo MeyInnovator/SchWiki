@@ -17,7 +17,7 @@ body {
     margin-bottom: 20px;
   }
   
-  .content .grid {
+  .content .begriffe-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Dynamische Spaltenbreite */
     gap: 20px; /* Abstand zwischen den Kästen */
