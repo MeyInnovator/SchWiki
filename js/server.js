@@ -18,7 +18,7 @@ const db = new sqlite3.Database('./database.sqlite', (err) => {
 
 // API-Endpunkt zum Abrufen der Lernfelder (jetzt mit description)
 app.get('/api/lernfelder', (req, res) => {
-  const sql = `SELECT id, name, description FROM lernfelder`;
+  const sql = `SELECT id, name FROM lernfelder`;
   db.all(sql, [], (err, rows) => {
     if (err) {
       console.error(err);
