@@ -1,4 +1,7 @@
-document.addEventListener("DOMContentLoaded", generateLernfeldList);
+document.addEventListener("DOMContentLoaded", () => {
+  generateLernfeldList();
+  enableSearch();
+});
 
 async function generateLernfeldList() {
   const lernfeldList = document.querySelector(".lernfeld-list");
@@ -49,4 +52,23 @@ async function generateLernfeldList() {
   } catch (error) {
     console.error("Fehler beim Laden der Lernfelder:", error);
   }
+}
+
+function enableSearch() {
+  const searchInput = document.querySelector(".search-input");
+  const lernfeldList = document.querySelector(".lernfeld-list");
+
+  searchInput.addEventListener("input", () => {
+    const searchValue = searchInput.value.toLowerCase();
+    const lernfeldItems = lernfeldList.querySelectorAll(".lernfeld-item");
+
+    lernfeldItems.forEach(item => {
+      const text = item.querySelector("h2").textContent.toLowerCase();
+      if (text.includes(searchValue)) {
+        item.style.display = ""; // Zeige das Lernfeld an
+      } else {
+        item.style.display = "none"; // Blende das Lernfeld aus
+      }
+    });
+  });
 }

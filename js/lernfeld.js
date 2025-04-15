@@ -35,9 +35,31 @@ async function fetchBegriffe() {
 
       listContainer.appendChild(begriffItem);
     });
+
+    // Suchfunktion aktivieren
+    enableSearch();
   } catch (error) {
     console.error("Fehler beim Laden der Begriffe:", error);
   }
+}
+
+// Funktion zur Aktivierung der Suchfunktion
+function enableSearch() {
+  const searchInput = document.querySelector('.search-input');
+  const begriffItems = document.querySelectorAll('.begriff-item');
+
+  searchInput.addEventListener('input', () => {
+    const searchValue = searchInput.value.toLowerCase();
+
+    begriffItems.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      if (text.includes(searchValue)) {
+        item.style.display = ''; // Zeige den Begriff an
+      } else {
+        item.style.display = 'none'; // Blende den Begriff aus
+      }
+    });
+  });
 }
 
 // Begriffe laden
