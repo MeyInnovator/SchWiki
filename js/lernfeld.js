@@ -22,18 +22,14 @@ async function fetchBegriffe() {
     begriffe.forEach(begriff => {
       const begriffItem = document.createElement('a');
       begriffItem.classList.add('begriff-item');
-      begriffItem.href = `begriffe.html?begriff=${encodeURIComponent(begriff)}`;
-      begriffItem.className = "card";
-      begriffItem.textContent = begriff;
-      begriffItem.innerHTML = `
-        <h2>${begriff.name}</h2>
-        <p>${begriff.Erklärung || ''}</p>
-      `;
+      begriffItem.href = `begriffe.html?begriff=${encodeURIComponent(begriff.name)}`;
+      begriffItem.textContent = begriff.name;
 
+      // Überprüfen, ob der Begriff in completedTerms enthalten ist
       if (completedTerms.includes(begriff.name)) {
-        const checkmark = document.createElement("span");
-        checkmark.textContent = "✔️";
-        checkmark.className = "checkmark";
+        const checkmark = document.createElement('span');
+        checkmark.textContent = '✔️'; // Checkmark-Symbol
+        checkmark.classList.add('checkmark');
         begriffItem.appendChild(checkmark);
       }
 

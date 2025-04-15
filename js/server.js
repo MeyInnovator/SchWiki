@@ -43,6 +43,24 @@ app.get('/api/lernfelder/:id/begriffe', (req, res) => {
   });
 });
 
+// API-Endpunkt zum Abrufen der Erklärung eines Begriffs
+app.get('/api/begriff/:name', (req, res) => {
+  const begriffName = req.params.name;
+  const sql = 'SELECT name, Erklärung FROM begriffe WHERE name = ?';
+  db.get(sql, [begriffName], (err, row) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    if (!row) {
+      res.status(404).json({ error: 'Begriff nicht gefunden' });
+      return;
+    }
+    res.json(row);
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server läuft auf http://localhost:${port}`);
 });

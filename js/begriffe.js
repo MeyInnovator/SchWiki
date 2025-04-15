@@ -14,12 +14,28 @@ const descriptionElement = document.getElementById("begriffs-description");
 // "Fertig"-Status aus dem Local Storage
 let completedTerms = JSON.parse(localStorage.getItem("completedTerms")) || [];
 
-// Überprüfen, ob der Begriff in der Datenbank vorhanden ist
-if (begriff && begriffeDaten[begriff]) {
-  titleElement.textContent = begriff;
-  descriptionElement.textContent = begriffeDaten[begriff];
+// API-Aufruf, um die Erklärung des Begriffs zu laden
+async function fetchBegriffDetails(begriff) {
+  try {
+    const response = await fetch(`http://localhost:3000/api/begriff/${encodeURIComponent(begriff)}`);
+    if (!response.ok) {
+      throw new Error("Begriff nicht gefunden");
+    }
+    const data = await response.json();
+    titleElement.textContent = data.name;
+    descriptionElement.textContent = data.Erklärung || "Keine Erklärung verfügbar.";
 
-  // Button hinzufügen
+    // Button hinzufügen
+    addCompletionButton(begriff);
+  } catch (error) {
+    console.error("Fehler beim Laden des Begriffs:", error);
+    titleElement.textContent = "Fehler";
+    descriptionElement.textContent = "Der Begriff konnte nicht geladen werden.";
+  }
+}
+
+// Funktion zum Hinzufügen des "Gelesen/Ungelesen"-Buttons
+function addCompletionButton(begriff) {
   const fertigButton = document.createElement("button");
   fertigButton.className = "btn green";
   fertigButton.id = "fertigButton";
@@ -36,21 +52,24 @@ if (begriff && begriffeDaten[begriff]) {
       // Begriff entfernen
       completedTerms = completedTerms.filter((term) => term !== begriff);
       fertigButton.textContent = "Gelesen";
-      fertigButton.style.backgroundColor = "#28a745"; // Orange
+      fertigButton.style.backgroundColor = "#28a745"; // Grün
     } else {
       // Begriff hinzufügen
       completedTerms.push(begriff);
       fertigButton.textContent = "Ungelesen";
-      fertigButton.style.backgroundColor = "#B08F2B"; // Grün
+      fertigButton.style.backgroundColor = "#B08F2B"; // Orange
     }
     // Speichern im Local Storage
     localStorage.setItem("completedTerms", JSON.stringify(completedTerms));
   });
+}
+
+// Begriffsdetails laden
+if (begriff) {
+  fetchBegriffDetails(begriff);
 } else {
-  // Fallback: Begriff nicht gefunden
   titleElement.textContent = "Begriff nicht gefunden";
-  descriptionElement.textContent =
-    "Der Begriff konnte nicht geladen werden.";
+  descriptionElement.textContent = "Kein Begriff wurde ausgewählt.";
 }
 
 // Zurück-Button
