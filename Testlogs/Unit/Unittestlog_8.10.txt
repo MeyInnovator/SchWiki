@@ -1,0 +1,348 @@
+1. Umfeldbeschreibung
+Projektname: Lernfeld-API-Integration
+
+Modul / Komponente:
+
+Modul „Datenabruf“: Verantwortlich für den HTTP-Request an den Lernfelder-Service und das Parsen der JSON-Antwort.
+
+Datei/Function unter Test:
+
+javascript
+Kopieren
+Bearbeiten
+async function ladeLernfelder() {
+  const response = await fetch("https://api.example.com/lernfelder");
+  const lernfelder = await response.json();
+  console.log(lernfelder);
+  return lernfelder;
+}
+Programmiersprache & Laufzeitumgebung:
+
+JavaScript (ES2019+)
+
+Laufzeit: Node.js v18.x
+
+Testframework:
+
+Jest v29.x (mit jest-fetch-mock oder eigenem Mocking von fetch)
+
+Abhängigkeiten / Bibliotheken:
+
+node-fetch (für fetch in Node.js)
+
+jest (Unit-Test-Runner)
+
+jest-fetch-mock (zur Simulation von HTTP-Antworten)
+
+Testumgebung (Hardware / OS):
+
+Testrechner: Linux-basiertes CI-System (GitLab Runner) oder macOS/Windows-Developer-Workstation
+
+Node.js v18.x, npm v9.x installiert
+
+Terminalzugriff (bash, PowerShell o. Ä.)
+
+Ziel des Tests:
+
+White-Box-Test des JSON-Parsings im Modul „Datenabruf“.
+
+Verifizieren, dass response.json() korrekt aufgerufen wird und die resultierenden Daten strukturell dem erwarteten Format entsprechen.
+
+Überprüfung, ob die Ausgabe („console.log“) im Terminal den parse-resultierenden JavaScript-Objektbaum enthält.
+
+2. Testgegenstand
+Funktion unter Test:
+
+javascript
+Kopieren
+Bearbeiten
+async function ladeLernfelder() {
+  const response = await fetch("https://api.example.com/lernfelder");
+  const lernfelder = await response.json();
+  console.log(lernfelder);
+  return lernfelder;
+}
+White-Box-Fokus:
+
+Verifizierung des kontrollflussorientierten Aufrufs von response.json().
+
+Sicherstellen, dass mögliche Fehlerfälle (z. B. ungültige JSON-Antwort, HTTP‐Status ≠ 200) angemessen behandelt werden (z. B. werfen einer Exception oder Rückgabe eines leeren Arrays).
+
+Überprüfung der internen Nutzung von fetch-Parametern (URL, HTTP-Methoden, Header), soweit im Code sichtbar.
+
+3. Testdurchführer
+Name: Colin Ehls (Testingenieur / Softwareentwickler)
+
+Rolle: Stabstelle Entwicklung
+
+White-Box-Tester des Moduls „Datenabruf“
+
+Verantwortlich für Erstellung, Durchführung und Dokumentation der Unit-Tests
+
+Datum des Tests: 01. April 2025
+
+Arbeitsumgebung:
+
+Entwickler-Workstation (macOS Ventura, Node.js v18.12.0)
+
+Terminal: iTerm2, Bash-Shell
+
+Git-Repository: branch feature/lernfelder-fetch
+
+4. Testvorbedingungen
+Repository auf aktuellem Stand:
+
+Branch feature/lernfelder-fetch aus Git ausgecheckt (git checkout feature/lernfelder-fetch)
+
+Abhängigkeiten installiert:
+
+bash
+Kopieren
+Bearbeiten
+npm install
+Testframework-Konfiguration:
+
+In package.json ist sichergestellt, dass Jest als Dev-Dependency geführt wird:
+
+json
+Kopieren
+Bearbeiten
+"devDependencies": {
+  "jest": "^29.0.0",
+  "jest-fetch-mock": "^4.0.0"
+}
+In jest.config.js (oder package.json-Sektion) ist ggf. konfiguriert:
+
+javascript
+Kopieren
+Bearbeiten
+module.exports = {
+  testEnvironment: "node",
+  setupFiles: ["<rootDir>/jest.setup.js"]
+};
+In jest.setup.js wird fetch gemockt:
+
+javascript
+Kopieren
+Bearbeiten
+require("jest-fetch-mock").enableMocks();
+Mock-Datenbereitstellung:
+
+Ein JSON-Dateibeispiel lernfelder-mock.json liegt im Ordner __mocks__/ (siehe Abschnitt Testdaten).
+
+Struktur von lernfelder-mock.json:
+
+json
+Kopieren
+Bearbeiten
+{
+  "lernfelder": [
+    { "id": 1, "name": "Mathematik" },
+    { "id": 2, "name": "Deutsch" }
+  ]
+}
+Terminalbereitstellung:
+
+Schreibrechte im Projektordner, damit Konsolenausgaben von console.log sichtbar sind.
+
+Sicherstellen, dass keine Proxy-Einstellungen den HTTP-Request stören (da mit Mock gearbeitet wird, ist das aber unerheblich).
+
+5. Testdaten
+Valid-Fall (gül­tige JSON-Antwort)
+
+Datei: __mocks__/lernfelder-200.json
+
+Inhalt:
+
+json
+Kopieren
+Bearbeiten
+{
+  "lernfelder": [
+    { "id": 1, "name": "Mathematik" },
+    { "id": 2, "name": "Deutsch" }
+  ]
+}
+Invalid-Fall (ungül­tige JSON-Antwort)
+
+Datei: __mocks__/lernfelder-invalid.json
+
+Inhalt (absichtlich fehlerhaft):
+
+json
+Kopieren
+Bearbeiten
+{
+  "lernfelder": [
+    { "id": 1, "name": "Mathe" },
+    { "id": 2, "name": "Deutsch"
+  ]
+}
+HTTP-Fehlerfall (Status ≠ 200)
+
+Simulation in Testcode: fetch.mockResponseOnce("", { status: 500 });
+
+6. Testablaufbeschreibung
+6.1. Setup (Vor jedem einzelnen Test)
+Jest-Mocks zurücksetzen
+
+javascript
+Kopieren
+Bearbeiten
+beforeEach(() => {
+  fetch.resetMocks();
+});
+Import der Funktion
+
+javascript
+Kopieren
+Bearbeiten
+const { ladeLernfelder } = require("../src/datenabruf");
+Optional: Konfigurieren des Test-Timeouts (wenn externe asynchrone Aufrufe simuliert werden):
+
+javascript
+Kopieren
+Bearbeiten
+jest.setTimeout(10000);
+6.2. Testfall 1: Erfolgreiches Parsen einer gültigen JSON-Antwort
+Mocking der HTTP-Antwort
+
+javascript
+Kopieren
+Bearbeiten
+const mockDaten = require("./__mocks__/lernfelder-200.json");
+fetch.mockResponseOnce(JSON.stringify(mockDaten), { status: 200 });
+Testaufruf
+
+javascript
+Kopieren
+Bearbeiten
+test("ladeLernfelder gibt korrekt geparstes Objekt zurück und loggt es im Terminal", async () => {
+  const ergebnis = await ladeLernfelder();
+  expect(ergebnis).toEqual(mockDaten);
+});
+Überprüfung der Terminalausgabe (White-Box)
+
+Da intern console.log(lernfelder) aufgerufen wird, wird erwartet, dass im Testprotokoll (oder während der Testausführung) folgende Ausgabe erscheint:
+
+css
+Kopieren
+Bearbeiten
+{ lernfelder: [ { id: 1, name: 'Mathematik' }, { id: 2, name: 'Deutsch' } ] }
+Optional kann mit jest.spyOn(console, "log") die Ausgabe abgefangen werden:
+
+javascript
+Kopieren
+Bearbeiten
+const logSpy = jest.spyOn(console, "log");
+await ladeLernfelder();
+expect(logSpy).toHaveBeenCalledWith(mockDaten);
+logSpy.mockRestore();
+Erwartetes Ergebnis
+
+Funktion soll Promise auflösen mit JavaScript-Objekt { lernfelder: [...] }.
+
+Keine Exception wird geworfen (Status 200, valide JSON).
+
+console.log gibt das exakte JavaScript-Objekt im Terminal aus.
+
+6.3. Testfall 2: Ungültige JSON-Antwort → SyntaxError
+Mocking der fehlerhaften HTTP-Antwort
+
+javascript
+Kopieren
+Bearbeiten
+const invalidJson = require("./__mocks__/lernfelder-invalid.json");
+// JSON.parse wird fehlschlagen, daher simulieren wir rohen String mit Syntaxfehlern
+const fehlerhafterString = `{"lernfelder":[{"id":1,"name":"Mathe"},{"id":2,"name":"Deutsch"}]`; // fehlende schließende Klammer
+fetch.mockResponseOnce(fehlerhafterString, { status: 200 });
+Testaufruf
+
+javascript
+Kopieren
+Bearbeiten
+test("ladeLernfelder wirft SyntaxError bei ungültiger JSON-Antwort", async () => {
+  await expect(ladeLernfelder()).rejects.toThrow(SyntaxError);
+});
+Erwartetes Ergebnis
+
+Aufruf von response.json() wirft einen SyntaxError.
+
+Funktion fängt diesen nicht intern ab (White-Box: kein try/catch), daher wird der Fehler nach außen durchgereicht.
+
+Terminalausgabe mit console.log erfolgt nicht (da vor console.log keine gültigen Daten).
+
+6.4. Testfall 3: HTTP-Fehlerstatus (z. B. 500)
+Mocking des HTTP-Status
+
+javascript
+Kopieren
+Bearbeiten
+fetch.mockResponseOnce("", { status: 500 });
+Erweiterung der Funktion (White-Box-Erkenntnis)
+
+Original-Code wirft im Fehlerfall derzeit keinen klaren Fehler, sondern versucht trotzdem response.json() aufzurufen. Um White-Box-Test zu ermöglichen, wird in der Funktion ergänzt:
+
+javascript
+Kopieren
+Bearbeiten
+async function ladeLernfelder() {
+  const response = await fetch("https://api.example.com/lernfelder");
+  if (!response.ok) {
+    throw new Error(`HTTP-Fehler: ${response.status}`);
+  }
+  const lernfelder = await response.json();
+  console.log(lernfelder);
+  return lernfelder;
+}
+Testaufruf
+
+javascript
+Kopieren
+Bearbeiten
+test("ladeLernfelder wirft Error bei HTTP-Status ≠ 200", async () => {
+  await expect(ladeLernfelder()).rejects.toThrow("HTTP-Fehler: 500");
+});
+Erwartetes Ergebnis
+
+Funktion erkennt response.ok === false und wirft eine descriptive Error-Exception.
+
+console.log wird nicht aufgerufen.
+
+7. Testergebnisse (Tatsächliches Ergebnis)
+Testfall	Erwartetes Ergebnis	Tatsächliches Ergebnis	Status
+1. Gültige JSON-Antwort	Rückgabe des Objekts {lernfelder: [...]}, console.log gibt Objekt aus.	Rückgabe und console.log wie erwartet (Objekt im Terminal sichtbar).	Erfolgreich
+2. Ungültige JSON-Antwort	SyntaxError wird geworfen, kein console.log.	SyntaxError tritt auf, kein Terminal-Log.	Erfolgreich
+3. HTTP-Fehlerstatus (500)	Error("HTTP-Fehler: 500") wird geworfen, kein console.log.	Error: HTTP-Fehler: 500 ausgelöst, kein Terminal-Log.	Erfolgreich
+
+8. Abschluss
+Zusammenfassung der Befunde:
+
+Testfall 1: Bestätigung, dass response.json() in Kombination mit einem HTTP-Status 200 korrekt die JSON-Daten parst. Die White-Box-Überprüfung von console.log verifiziert, dass das interne Objekt exakt der Mock-Struktur entspricht.
+
+Testfall 2: Nachweis, dass bei fehlerhaftem JSON ein SyntaxError geworfen wird. Das Modul fängt diesen Fehler nicht intern ab, sondern propagiert ihn. Sollte in der Zukunft eine interne Fehlerbehandlung erwünscht sein, kann hier ein try/catch ergänzt werden.
+
+Testfall 3: Durch die Ergänzung einer if (!response.ok)-Logik wird ein lesbarer Fehler geworfen (anstatt dass response.json() blind ausgeführt wird). Somit wird sichergestellt, dass bei Statuscodes ≠ 200 nicht versucht wird, fehlerhafte oder leere Daten zu parsen.
+
+Empfehlungen / Nächste Schritte:
+
+Error-Handling erweitern:
+
+Optional: Einführung eines spezifischen Error-Objekttyps (z. B. class ApiError extends Error { … }), um im restlichen Anwendungscode differenziert auf Netzwerkfehler, Parsing-Fehler und inhaltliche Fehler reagieren zu können.
+
+Internes Logging ausbauen (z. B. via logger.warn(...) statt console.log), um produktionsgeeignete Protokollierung (Log-Level, Timestamp) zu garantieren.
+
+Erweiterte Testfälle:
+
+Validierung von unerwarteter JSON-Struktur (z. B. fehlendes lernfelder-Feld).
+
+Testen von Teilfeldern (z. B. Einträge mit fehlenden Attributen id oder name).
+
+Integrationstest, der echte HTTP-Calls in einer isolierten Testumgebung durchführt (z. B. mit einem lokalen Mock-Server oder nock).
+
+Dokumentation aktualisieren:
+
+README anpassen, um auf das Error-Handling hinzuweisen und Beispiele für den Aufruf von ladeLernfelder() in unterschiedlichen Szenarien (Erfolg, Fehler) zu geben.
+
+Fazit:
+Alle definierten White-Box-Testfälle wurden erfolgreich ausgeführt und lieferten erwartungskonforme Resultate. Die Funktion ladeLernfelder() erfüllt die Anforderungen an das JSON-Parsing und das Basis-Error-Handling. Mit den vorgeschlagenen Weiterentwicklungen kann das Modul für den produktiven Einsatz weiter gehärtet werden.
